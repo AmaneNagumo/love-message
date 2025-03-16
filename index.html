@@ -60,23 +60,33 @@
                 opacity: 0;
             }
         }
-        .message-icon {
+        .message-icon, .play-button {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: #ff6b81;
             color: white;
-            padding: 20px;
             border-radius: 50%;
             font-size: 2rem;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             z-index: 9999;
         }
+        .play-button {
+            top: 20px;
+            right: 20px;
+        }
+        .message-icon {
+            top: 100px;
+            right: 20px;
+        }
         .message-box {
             display: none;
             position: absolute;
-            top: 90px;
+            top: 170px;
             right: 20px;
             background: white;
             padding: 15px;
@@ -92,6 +102,7 @@
             padding: 5px;
             border: 1px solid #ff6b81;
             border-radius: 5px;
+            resize: none;
         }
         .message-box button {
             margin-top: 5px;
@@ -101,19 +112,6 @@
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 5px;
-        }
-        .play-button {
-            position: absolute;
-            top: 150px;
-            right: 20px;
-            background: #ff6b81;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
         }
     </style>
 </head>
@@ -125,13 +123,13 @@
         Your browser does not support the audio element.
     </audio>
     
+    <div class="play-button" onclick="playMusic()">🎵</div>
+    
     <div class="message-icon" onclick="toggleMessageBox()">💌</div>
     <div class="message-box" id="messageBox">
         <textarea id="userMessage" placeholder="Write a message..."></textarea>
         <button onclick="sendMessage()">Send</button>
     </div>
-    
-    <div class="play-button" onclick="playMusic()">🎵</div>
     
     <script>
         function toggleMessageBox() {
