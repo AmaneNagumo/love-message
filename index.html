@@ -102,12 +102,24 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        .play-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #ff6b81;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
     <h1>I Love You My Love ❤️🥰</h1>
     <div class="hearts"></div>
-    <audio id="loveSong" loop autoplay>
+    <audio id="loveSong" loop>
         <source src="https://github.com/AmaneNagumo/love-message/raw/refs/heads/main/I%20Wanna%20Be%20Yours.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -117,6 +129,8 @@
         <textarea id="userMessage" placeholder="Write a message..."></textarea>
         <button onclick="sendMessage()">Send</button>
     </div>
+    
+    <div class="play-button" onclick="playMusic()">🎵</div>
     
     <script>
         function createHeart() {
@@ -139,6 +153,15 @@
             if (message.trim() !== "") {
                 alert("Message sent: " + message);
                 document.getElementById("userMessage").value = "";
+            }
+        }
+        
+        function playMusic() {
+            const audio = document.getElementById("loveSong");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
             }
         }
     </script>
