@@ -20,6 +20,7 @@
             box-sizing: border-box;
             overflow: hidden;
             flex-direction: column;
+            position: relative;
         }
         h1 {
             font-size: 4rem;
@@ -59,32 +60,62 @@
                 opacity: 0;
             }
         }
-        button {
-            background-color: #ff6b81;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            color: #fff;
+        .message-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b81;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
             font-size: 1.5rem;
-            font-family: 'Dancing Script', cursive;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
         }
-        button:hover {
-            transform: scale(1.1);
-            background-color: #ff4757;
+        .message-box {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .message-box textarea {
+            width: 200px;
+            height: 80px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            padding: 5px;
+            border: 1px solid #ff6b81;
+            border-radius: 5px;
+        }
+        .message-box button {
+            margin-top: 5px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <h1>I Love You My Love ❤️🥰</h1>
-    <button onclick="playMusic()">🎵 Play Our Love Song ❤️</button>
     <div class="hearts"></div>
-    <audio id="loveSong" loop>
+    <audio id="loveSong" loop autoplay>
         <source src="https://github.com/AmaneNagumo/love-message/raw/refs/heads/main/I%20Wanna%20Be%20Yours.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    
+    <div class="message-icon" onclick="toggleMessageBox()">💌</div>
+    <div class="message-box" id="messageBox">
+        <textarea id="userMessage" placeholder="Write a message..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    
     <script>
         function createHeart() {
             const heart = document.createElement("div");
@@ -96,9 +127,17 @@
         }
         setInterval(createHeart, 500);
 
-        function playMusic() {
-            const audio = document.getElementById('loveSong');
-            audio.play().catch(error => console.log("Playback error: ", error));
+        function toggleMessageBox() {
+            const box = document.getElementById("messageBox");
+            box.style.display = box.style.display === "block" ? "none" : "block";
+        }
+
+        function sendMessage() {
+            const message = document.getElementById("userMessage").value;
+            if (message.trim() !== "") {
+                alert("Message sent: " + message);
+                document.getElementById("userMessage").value = "";
+            }
         }
     </script>
 </body>
